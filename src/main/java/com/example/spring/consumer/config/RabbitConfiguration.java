@@ -1,4 +1,4 @@
-package com.example.spring.consumer.configuration;
+package com.example.spring.consumer.config;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.util.StdDateFormat;

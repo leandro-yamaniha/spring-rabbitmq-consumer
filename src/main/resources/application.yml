@@ -1,19 +1,31 @@
 server:
-  port: 8082
+  port: ${port:8082}
 spring:
+  profiles:
+    active: ${profile} 
   rabbitmq:
     host: localhost
     port: 5672
     username: guest
     password: guest
-    request:
-      exchenge:
-        producer: ex.producer.aula-spring
-      routing-key:
-        producer: rk.producer.aula-spring
-      dead-letter:
-        producer: dl.producer.aula-spring
-      parking-lot:
-        producer: pl.producer.aula-spring
     listener:
-      time-retry: 00 39 22 * * *
+      simple:
+        default-requeue-rejected: false
+        retry:
+          enabled: true
+          initial-interval: 2000
+          max-attempts: 2
+          multiplier: 1.5
+          max-interval: 5000
+    request:
+      exchange:
+        name: ${exchange}
+      queue:
+        name: ${queue-name}
+        routing-key: ${queue-routing-key}
+      dead-letter:
+        name: ${deadletter-name}
+        routing-key: ${deadletter-routing-key}
+      parking-lot:
+        name: ${parkinglot-name}
+        routing-key: ${parkinglot-routing-key}
