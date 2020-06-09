@@ -4,10 +4,11 @@ spring:
   profiles:
     active: ${profile} 
   rabbitmq:
-    host: localhost
-    port: 5672
-    username: guest
-    password: guest
+    host: ${mq-host}
+    port: ${mq-port}
+    username: ${mq-username}
+    password: ${mq-password}
+    virtual-host: ${mq-vhost}
     listener:
       simple:
         default-requeue-rejected: false
